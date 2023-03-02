@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/03/02 21:24:57 by alejarod         ###   ########.fr        #
+#    Updated: 2023/03/02 21:45:41 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,19 +37,7 @@ OBJS = $(LIBFT_SRCS:.c=.o) $(SRCS:.c=.o)
 # Targets
 all: $(NAME)
 
-#LINUX COMPILATION (Cmd + / to comment multiple lines in VS Code)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
-	@echo "./so_long <.ber file> to run"
-
-
-#MAC OS COMPILATION (Ctrl + / to comment multiple lines)
-
+#Compile in MacOS (Ctrl + / to comment multiple lines in VSCode)
 # %.o: %.c
 # 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
@@ -58,6 +46,15 @@ $(NAME): $(OBJS)
 # 	$(CC) $(CFLAGS) -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 # 	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
 # 	@echo "./so_long <.ber file> to run"
+
+# Compile in LINUX (Cmd + / to comment multiple lines in VSCode)
+%.o: %.c
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
+	@echo "./so_long <.ber file> to run"
 
 # removes the .o files
 clean:
@@ -71,7 +68,6 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) mlx/libmlx.a
 #	$(RM) mlx/libmlx.dylib
-#	@(RM) mlx_linux.a
 	@echo $(RED_PRE)"so_long.a & libmlx.a deleted !"$(RESET_BLACK)
 
 re: fclean all
