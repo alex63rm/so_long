@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/03/03 20:37:53 by alejarod         ###   ########.fr        #
+#    Updated: 2023/03/07 20:52:38 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ OBJS = $(LIBFT_SRCS:.c=.o) $(SRCS:.c=.o)
 # Targets
 all: $(NAME)
 
+#------------------------------COMPILE MAC OS-----------------------------------
+
 #Compile in MacOS (Ctrl + / to comment multiple lines in VSCode)
 # %.o: %.c
 # 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
@@ -47,6 +49,8 @@ all: $(NAME)
 # 	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
 # 	@echo "./so_long <.ber file> to run"
 
+#-------------------------------COMPILE IN LINUX--------------------------------
+
 # Compile in LINUX (Cmd + / to comment multiple lines in VSCode)
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
@@ -55,6 +59,8 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
 	@echo "./so_long <.ber file> to run"
+
+#------------------------------------------------------------------------------
 
 # removes the .o files
 clean:
@@ -66,7 +72,7 @@ clean:
 # removes .o files & push_swap executable
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) mlx/libmlx.a
+	@$(RM) libs/mlx/libmlx.a
 #	$(RM) mlx/libmlx.dylib
 	@echo $(RED_PRE)"so_long.a & libmlx.a deleted !"$(RESET_BLACK)
 
