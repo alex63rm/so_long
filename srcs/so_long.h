@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/09 21:30:56 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/10 00:32:59 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ typedef struct s_data
 	void	*mlx;
 	void	*window;
 	char	**map;
-	int		height;
 }	t_data;
 
-int		ft_create_map(char *str);
-char	**ft_matrix(int width, char *str);
+void	ft_map_rows(t_data *game, char *str);
+char	**ft_map_fill(int *rows, char *str);
 int		ft_check_map(char **map);
 
 #endif
