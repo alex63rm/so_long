@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 20:20:27 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/09 21:23:34 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:31:25 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ Step 2. With the help of GNL, read the first line until \n or EOF (end of file)
 Step 3. Keep reading in a loop until all the lines have been read. Return the
 number of rows (or lines read)
 */
-int	ft_map_height(char *str)
+int	ft_create_map(char *str)
 {
 	int		fd;
 	char	*line;
 	int		rows;
+	int		columns;
 
 	rows = 0;
+	columns = 0;
 	fd = open(str, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
@@ -43,5 +45,5 @@ int	ft_map_height(char *str)
 
 char	**ft_map_fill(int columns, char *str)
 {
-	
+
 }

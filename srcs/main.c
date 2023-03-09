@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/09 21:25:07 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:30:45 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		game.height = ft_map_height(argv[1]);
+		game.height = ft_create_map(argv[1]);
 		// game.map = ft_matrix(game.width, argv[1]);
 		// if (ft_check_map(game.map))
 		// {
