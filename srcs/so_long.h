@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/10 00:32:59 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/11 13:48:18 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 #include<stdio.h>
 #include<fcntl.h>
 
+//----------------------------ERROR TYPES-------------------------
+
+#define WRONG_ARGS 1
+#define EMPTY_MAP 2
+#define	INVALID_MAP 3
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -26,8 +32,11 @@ typedef struct s_data
 	char	**map;
 }	t_data;
 
-void	ft_map_rows(t_data *game, char *str);
+void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
-int		ft_check_map(char **map);
+void	ft_map_iserror(t_data *game);
+void	ft_error_exit(int type, t_data *game);
 
+//temp functions
+void	ft_print_map(t_data game);
 #endif
