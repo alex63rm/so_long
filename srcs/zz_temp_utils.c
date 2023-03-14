@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 11:42:12 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/11 12:44:15 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:34:24 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,16 @@ void	ft_print_map(t_data game)
 		printf("%s", game.map[i]);
 		i++;
 	}
+	printf("\n");
+}
+
+void	ft_print_dup_map(char **map)
+{
+	int i = 0;
+	while (map[i])
+	{
+		printf("%s", map[i]);
+		i++;
+	}
+	printf("\n");
 }

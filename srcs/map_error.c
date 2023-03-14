@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 14:08:32 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:36:02 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,19 @@ static int	ft_object_iscorrect(char **map, char c)
 	return (0);
 }
 
+/*
+This function starts creating a copy of the original map. We are going to
+change chars to check paths, so better to modify a copy.
+*/
 static int	ft_path_iscorrect(char **map)
 {
-	(void)map;
+	char	**map_copy;
+
+	map_copy = ft_copy_map(map);
+	printf("duplicate map is:\n");
+	ft_print_dup_map(map_copy);
+
+	// SEGUIR AQUI
 	return (0);
 }
 
@@ -128,5 +138,5 @@ void	ft_map_iserror(t_data *game)
 		ft_error_exit(INVALID_OBJECTS, game);
 	if (ft_path_iscorrect(game->map) == 1)
 		ft_error_exit(INVALID_PATH, game);
-	return (0);
+	return ;
 }

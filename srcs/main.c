@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/11 13:43:54 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:34:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 		ft_save_map(&game, argv[1]);
 		ft_map_iserror(&game);
 
+		printf("main copy of map is:\n");
 		ft_print_map(game);
-		printf("\n");	// additional \n at the end of the map
 		// ft_load_map(&game);
 	}
 	// JUST PRINT TEST

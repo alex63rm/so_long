@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:53:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 13:36:48 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:25:04 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,42 @@ char	ft_get_object(char **map, char c)
 		i++;
 	}
 	return (count);
+}
+
+/*
+This function makes a copy of the map. It is an array of pointers,
+each pointer points to a string. The logic is similar to ft_split
+i is the counter of the first level of pointers (or number of rows)
+j is an aux counter to loop and save all the lines
+
+i = 0		| * |			*| 1 |	| 1 |	| 1 |
+i = 1		| * |			*| 1 |	| 1 |	| 1 |
+...			| * |			*| 1 |	| 1 |	| 1 |
+i = n		| * |			*| 1 |	| 1 |	| 1 |
+
+First, allocate memory for the array of pointers
+Second, loop and duplicate all the lines of the map (arrays of chars)
+Place NULL at the end of the array of pointers
+*/
+
+char	**ft_copy_map(char **map)
+{
+	char	**map_copy;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+		i++;
+	map_copy = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!map_copy)
+		return (0);
+	j = 0;
+	while (j < i)
+	{
+		map_copy[j] = ft_strdup(map[j]);
+		j++;
+	}
+	map_copy[j] = NULL;
+	return (map_copy);
 }

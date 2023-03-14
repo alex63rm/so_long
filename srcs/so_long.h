@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 14:08:12 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:26:41 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ void	ft_error_exit(int type, t_data *game);
 //--------------------UTILS----------------------
 int		ft_strlen_line(char *str);
 char	ft_get_object(char **map, char c);
+char	**ft_copy_map(char **map);
 
 
 //temp functions
 void	ft_print_map(t_data game);
+void	ft_print_dup_map(char **map);
+
 #endif
