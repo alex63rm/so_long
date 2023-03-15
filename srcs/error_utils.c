@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:53:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 22:25:04 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:51:40 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,35 @@ char	ft_get_object(char **map, char c)
 	}
 	return (count);
 }
+/*
+This function finds the initial position of the player
+It returns the coordinate x and then y.
+It just runs a regular loop, fixing the position of the current row y
+and then loops all the positions of that row (columns x)
+*/
+void	ft_find_p(char **map, t_pos *p_start)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == 'P')
+			{
+				p_start->x = x;
+				p_start->y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 /*
 This function makes a copy of the map. It is an array of pointers,
@@ -75,7 +104,6 @@ First, allocate memory for the array of pointers
 Second, loop and duplicate all the lines of the map (arrays of chars)
 Place NULL at the end of the array of pointers
 */
-
 char	**ft_copy_map(char **map)
 {
 	char	**map_copy;

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 22:36:02 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:53:54 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,27 @@ static int	ft_object_iscorrect(char **map, char c)
 }
 
 /*
-This function starts creating a copy of the original map. We are going to
-change chars to check paths, so better to modify a copy.
+This function checks if there is a correct path
+Step 1. Create a copy of the original map. We are going to modify the values with
+floodfill algorithm, and we don't want to modify the original map.
+Step 2. Find the position of the player 'P'. The position of x and y gets saved
+in the structure thanks to the use of pointers.
+Step 3. Floodfill algorithm
+Next, we need to find the position of the player 'P'
 */
 static int	ft_path_iscorrect(char **map)
 {
 	char	**map_copy;
+	t_pos	p_start;
 
 	map_copy = ft_copy_map(map);
+	ft_find_p(map_copy, &p_start);
+	printf("player is at position row:%d, column:%d\n", p_start.y, p_start.x);
+
 	printf("duplicate map is:\n");
 	ft_print_dup_map(map_copy);
 
-	// SEGUIR AQUI
+
 	return (0);
 }
 
@@ -123,7 +132,6 @@ Step 4. There must be a valid path to collect and exit
 */
 void	ft_map_iserror(t_data *game)
 {
-	printf("entered ft_map_iserror\n");
 	int	i;
 
 	i = 0;

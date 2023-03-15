@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 22:26:41 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:51:48 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_data
 	char	**map;
 }	t_data;
 
+typedef struct	s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+
 void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
 void	ft_map_iserror(t_data *game);
@@ -45,6 +52,7 @@ void	ft_error_exit(int type, t_data *game);
 int		ft_strlen_line(char *str);
 char	ft_get_object(char **map, char c);
 char	**ft_copy_map(char **map);
+void	ft_find_p(char **map, t_pos *player);
 
 
 //temp functions
