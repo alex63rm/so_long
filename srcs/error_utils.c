@@ -6,30 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:53:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 19:51:40 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:22:26 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
-/*
-This function returns the length of a line up to the '\n', i.e, the lenght
-of the first line of the map
-*/
-int	ft_strlen_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return (-1);
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			break ;
-		i++;
-	}
-	return (i);
-}
 
 /*
 This function loops every position of the 2D map with a double loop
@@ -60,12 +41,64 @@ char	ft_get_object(char **map, char c)
 	return (count);
 }
 /*
-This function finds the initial position of the player
-It returns the coordinate x and then y.
+This function loops the copy of the map once it has been floodfilled. If it finds
+an E or C it means that the exit or a collectible was not reachable and thus
+calls the error function.
+i is the counter of rows (Y)
+j is the counter of colums (X)
+*/
+int	ft_check_floodfill(char **map_copy)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map_copy[i])
+	{
+		j = 0;
+		while (map_copy[i][j] != '\0')
+		{
+			if (map_copy[i][j] == 'E' || map_copy[i][j] == 'C')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+/*
+This is the floodfill standard algorithm. It is a recursive method that fills
+an area when the conditions are met. In this case, it will stop when it is
+outside the size of the map (redundant, since map is surrounded by '1') or when
+the position is a wall '1'. Every time it visits a position, it marks it as
+'V' (visited), which is also a condition to stop filling.
+*/
+void	ft_floodfill(char **map_copy, t_pos map_data, int x, int y)
+{
+	if (y >= map_data.size_y || x >= map_data.size_x || map_copy[y][x] == '1'
+	|| map_copy[y][x] == 'V')
+		return ;
+	else
+	{
+		map_copy[y][x] = 'V';
+		ft_floodfill(map_copy, map_data, x + 1, y);
+		ft_floodfill(map_copy, map_data, x - 1, y);
+		ft_floodfill(map_copy, map_data, x, y + 1);
+		ft_floodfill(map_copy, map_data, x, y - 1);
+	}
+	return ;
+}
+
+/*
+This function finds the initial position of the player and the size of
+the map.
 It just runs a regular loop, fixing the position of the current row y
 and then loops all the positions of that row (columns x)
+When it finds 'P' it saves the values of the player position in the struct
+It continues reading all the map and then saves the size in the struct
 */
-void	ft_find_p(char **map, t_pos *p_start)
+void	ft_find_p(char **map, t_pos *map_data)
 {
 	int	x;
 	int	y;
@@ -79,14 +112,16 @@ void	ft_find_p(char **map, t_pos *p_start)
 		{
 			if (map[y][x] == 'P')
 			{
-				p_start->x = x;
-				p_start->y = y;
-				return ;
+				map_data->p_x = x;
+				map_data->p_y = y;
 			}
 			x++;
 		}
 		y++;
 	}
+	map_data->size_y = y;
+	map_data->size_x = x;
+	return ;
 }
 
 /*

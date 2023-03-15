@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 19:53:54 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:34:26 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,22 +100,32 @@ Step 1. Create a copy of the original map. We are going to modify the values wit
 floodfill algorithm, and we don't want to modify the original map.
 Step 2. Find the position of the player 'P'. The position of x and y gets saved
 in the structure thanks to the use of pointers.
-Step 3. Floodfill algorithm
-Next, we need to find the position of the player 'P'
+Step 3. Floodfill algorithm in map_copy
+Step 4. Check floodfilled map. If error, free the map_copy and call the exit error ft
 */
 static int	ft_path_iscorrect(char **map)
 {
 	char	**map_copy;
-	t_pos	p_start;
+	t_pos	map_data;
 
 	map_copy = ft_copy_map(map);
-	ft_find_p(map_copy, &p_start);
-	printf("player is at position row:%d, column:%d\n", p_start.y, p_start.x);
-
 	printf("duplicate map is:\n");
 	ft_print_dup_map(map_copy);
 
+	ft_find_p(map_copy, &map_data);
+	printf("map size is row |%d|, columns |%d|\n",map_data.size_y, map_data.size_x);
+	printf("player is at position row: |%d|, column: |%d|\n", map_data.p_y, map_data.p_x);
 
+	ft_floodfill(map_copy, map_data, map_data.p_x, map_data.p_y);
+
+	printf("map after floodfill is:\n");
+	ft_print_dup_map(map_copy);
+
+	if (ft_check_floodfill(map_copy) == 1)
+	{
+		ft_free_map(map_copy);
+		return (1);
+	}
 	return (0);
 }
 

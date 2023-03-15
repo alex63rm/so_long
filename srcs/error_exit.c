@@ -6,11 +6,27 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/14 14:07:44 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:42:27 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+void	ft_free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (map[i] == NULL)
+		return ;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+
+}
 
 /*
 This function will free all the memory and exit the program in error -1
@@ -30,12 +46,11 @@ void	ft_error_exit(int type, t_data *game)
 	if (type == INVALID_OBJECTS)
 		printf("Error\nInvalid object type or number. Allowed types and count: P = 1, E = 1, C >= 1\n");
 	if (type == INVALID_PATH)
-		printf("Error\nMap does not contain a valid path\n");
+		printf("Error\nPlayer is unable to collect all objects and reach the exit\n");
 
-	(void)game;
 	//free everything before exiting
-	//ft_free_all()
-	//static void	ft_free_map(t_data *game)
+	// free get next line etc
+	ft_free_map(game->map);
 	//static void	ft_free_all(t_data *game)
 	//
 	exit (-1);
