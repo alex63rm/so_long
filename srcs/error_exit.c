@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 21:42:27 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:05:08 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	ft_free_map(char **map)
 	}
 	free(map);
 
+}
+
+void	ft_general_free(t_data *game)
+{
+	if (game->map)
+		ft_free_map(game->map);
+	if (game->mlx && game->window)
+		mlx_destroy_window(game->mlx, game->window);
+	if (game->mlx)
+		free(game->mlx);
 }
 
 /*
@@ -48,10 +58,11 @@ void	ft_error_exit(int type, t_data *game)
 	if (type == INVALID_PATH)
 		printf("Error\nPlayer is unable to collect all objects and reach the exit\n");
 
-	//free everything before exiting
 	// free get next line etc
-	ft_free_map(game->map);
-	//static void	ft_free_all(t_data *game)
+
+	//free everything before exiting
+	ft_general_free(game);
+
 	//
 	exit (-1);
 }

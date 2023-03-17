@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/17 19:33:01 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:28:56 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,23 @@ int	ft_strlen_line(char *str)
 	return (i);
 }
 
+
 /*
 This function starts the game by using some defined functions from the
 mlx library.
-
+Step 1. Init the mlx.
+Step 2. Load a window.
+Step 3. Scan the map and load the images over the window
+Step 4. Mlx_key_hook requires mlx, a function that defines the input and
+the parameters, which in our case is a structure
 */
 static void	ft_init_game(t_data *game)
 {
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, (ft_strlen_line(game->map[0]) * 80),
-	((game->map_rows) * 80), "My_title");
+	((game->map_rows) * 80), "Forest Adventure");
 	ft_scan_map(game);
+	mlx_key_hook(game->mlx, *ft_input, game);
 
 	// SEGUIR AQUI
 }
