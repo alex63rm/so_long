@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 22:16:16 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:33:01 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_strlen_line(char *str)
 
 /*
 This function starts the game by using some defined functions from the
-mlx library
+mlx library.
 
 */
 static void	ft_init_game(t_data *game)
@@ -42,7 +42,7 @@ static void	ft_init_game(t_data *game)
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, (ft_strlen_line(game->map[0]) * 80),
 	((game->map_rows) * 80), "My_title");
-	ft_draw_map(game);
+	ft_scan_map(game);
 
 	// SEGUIR AQUI
 }
