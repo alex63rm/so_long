@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/17 21:28:56 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:23:42 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,13 @@ static void	ft_init_game(t_data *game)
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, (ft_strlen_line(game->map[0]) * 80),
 	((game->map_rows) * 80), "Forest Adventure");
-	ft_scan_map(game);
-	mlx_key_hook(game->mlx, *ft_input, game);
 
+
+	ft_scan_map(game);
+	mlx_key_hook(game->window, *ft_input, game);
+	mlx_hook(game->window, 17, 1L << 17, ft_exit_ok, game);
+
+	mlx_loop(game->mlx);
 	// SEGUIR AQUI
 }
 

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/17 21:29:28 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:16:33 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@
 #define	INVALID_OBJECTS 104
 #define	INVALID_PATH 105
 #define INVALID_XPM 106
+#define MANUAL_CLOSE 107
 
 //----------------------------XPM CONSTANTS-----------------------
 
-#define FLOOR "textures/floor.xpm"
-#define WALL "textures/wall.xpm"
-#define COLLECT "textures/collectible.xpm"
-#define EXIT "textures/exit.xpm"
-#define PLAYER_U "textures/playerU.xpm"
-#define PLAYER_D "textures/playerD.xpm"
-#define PLAYER_L "textures/playerL.xpm"
-#define PLAYER_R "textures/playerR.xpm"
+#define WALL "textures/Wall.xpm"
+#define FLOOR "textures/Floor.xpm"
+#define COLLECT "textures/Collectible.xpm"
+#define EXIT "textures/Exit.xpm"
+#define PLAYER_U "textures/PlayerU.xpm"
+#define PLAYER_D "textures/PlayerD.xpm"
+#define PLAYER_L "textures/PlayerL.xpm"
+#define PLAYER_R "textures/PlayerR.xpm"
 
 
 typedef struct s_data
@@ -62,9 +63,11 @@ void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
 void	ft_map_iserror(t_data *game);
 void	ft_error_exit(int type, t_data *game);
+int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);
 void	ft_scan_map(t_data *game);
 int		ft_input(int key, t_data *game);
+
 
 
 //--------------------UTILS----------------------
