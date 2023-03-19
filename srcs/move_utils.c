@@ -6,19 +6,63 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:12:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/19 14:50:20 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:40:58 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
 
 /*
+This function chooses the corresponding image of the player depending on the
+key that has been pressed. xpm_path is initialized to NULL to avoid an error
+on the compiler saying that xpm_path "might not be initialized" in all the
+cases
+*/
+char	*ft_player_look(char direction)
+{
+	char	*xpm_path;
+
+	xpm_path = NULL;
+	if (direction == 'L')
+		xpm_path = PLAYER_L;
+	else if (direction == 'R')
+		xpm_path = PLAYER_R;
+	else if (direction == 'U')
+		xpm_path = PLAYER_U;
+	else if (direction == 'D')
+		xpm_path = PLAYER_D;
+	return (xpm_path);
+
+}
+
+/*
 This function prints the player after it has moved. Depending on the direction
-it prints the corresponding XPM image. 
+it prints the corresponding XPM image. Notice that x and y received are
+memory addresses
 */
 int	ft_print_player(t_data *game, int *x, int *y, char direction)
 {
+	void	*img;
+	int		img_height;
+	int		img_width;
 
+	img = mlx_xpm_file_to_image(game->mlx, ft_player_look(direction),
+		&img_width, &img_height);
+	if (!img)
+		ft_error_exit(106, game);
+	if (direction == 'L')
+		mlx_put_image_to_window(game->mlx, game->window,
+		img, (--(*x)) * 80, (*y *80));
+	if (direction == 'R')
+		mlx_put_image_to_window(game->mlx, game->window,
+		img, (++(*x)) * 80, (*y *80));
+	if (direction == 'U')
+		mlx_put_image_to_window(game->mlx, game->window,
+		img, *x * 80, (--(*y) *80));
+	if (direction == 'D')
+		mlx_put_image_to_window(game->mlx, game->window,
+		img, *x * 80, (++(*y) * 80));
+	return (0);
 }
 /*
 This function gets the position of the player in the map. It then updats the

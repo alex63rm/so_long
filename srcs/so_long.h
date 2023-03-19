@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/19 14:29:57 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/19 20:56:16 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void	ft_find_p(char **map, t_pos *player);
 void	ft_floodfill(char **map_copy, t_pos map_data, int x, int y);
 int		ft_check_floodfill(char **map_copy);
 void	ft_copy_p_pos(t_data *game, t_pos *map_data);
-int		ft_find_c(char **map)
+int		ft_find_c(char **map);
+char	*ft_player_look(char direction);
+int		ft_print_player(t_data *game, int *x, int *y, char direction);
+
 
 
 
