@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 21:34:26 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/19 13:29:02 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,15 @@ Step 2. Find the position of the player 'P'. The position of x and y gets saved
 in the structure thanks to the use of pointers.
 Step 3. Floodfill algorithm in map_copy
 Step 4. Check floodfilled map. If error, free the map_copy and call the exit error ft
+Step 5. Copy the STARTING position of the player to the game struct. It will be needed later
+in ft_move. Notice that we send the address (&) because the variable was created in this function
 */
-static int	ft_path_iscorrect(char **map)
+static int	ft_path_iscorrect(t_data *game)
 {
 	char	**map_copy;
 	t_pos	map_data;
 
-	map_copy = ft_copy_map(map);
+	map_copy = ft_copy_map(game->map);
 	printf("duplicate map is:\n");
 	ft_print_dup_map(map_copy);
 
@@ -126,6 +128,7 @@ static int	ft_path_iscorrect(char **map)
 		ft_free_map(map_copy);
 		return (1);
 	}
+	ft_copy_p_pos(game, &map_data);
 	return (0);
 }
 
@@ -154,7 +157,7 @@ void	ft_map_iserror(t_data *game)
 	if (ft_object_iscorrect(game->map, 'P') == 1 || ft_object_iscorrect(game->map, 'E')
 		|| ft_object_iscorrect(game->map, 'C') == 1)
 		ft_error_exit(INVALID_OBJECTS, game);
-	if (ft_path_iscorrect(game->map) == 1)
+	if (ft_path_iscorrect(game) == 1)
 		ft_error_exit(INVALID_PATH, game);
 	return ;
 }

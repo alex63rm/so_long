@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/18 14:23:42 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:51:39 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	ft_init_game(t_data *game)
 
 	mlx_loop(game->mlx);
 	// SEGUIR AQUI
+	ft_exit_ok(game);
 }
 
 /* The program starts here.
