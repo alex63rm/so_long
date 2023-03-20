@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:12:39 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/18 12:58:28 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:31:20 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ static void	ft_put_image(t_data *game, char *c, int x, int y)
 
 /*
 The function searches for the char in order to load the corresponding
-image. The path is a constant define in the header file.
+image. The path is a constant define in the header file. There is no
+image for the floor, but it can be added following the same logic
 */
 static void	ft_load_texture(t_data *game, char c, int x, int y)
 {
 	if (c == '1')
 		ft_put_image(game, WALL, x, y);
 	if (c == '0')
-	 	ft_put_image(game, FLOOR, x, y);
+		ft_put_image(game, FLOOR, x, y);
 	if (c == 'P')
-	 	ft_put_image(game, PLAYER_D, x, y);
+		ft_put_image(game, PLAYER_D, x, y);
 	if (c == 'C')
-	 	ft_put_image(game, COLLECT, x, y);
+		ft_put_image(game, COLLECT, x, y);
 	if (c == 'E')
-	 	ft_put_image(game, EXIT, x, y);
+		ft_put_image(game, EXIT, x, y);
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/18 13:53:40 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:09:48 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,5 @@ void	ft_error_exit(int type, t_data *game)
 
 	//free everything before exiting
 	ft_general_free(game);
-	// free get next line etc
-
-	//
 	exit (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/19 22:05:53 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:16:04 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,24 @@
 
 /*
 This function checks if all the collectibles have been collected. If so, the
-final door opens
+final door opens. Notice that we have to check before entering the Door square,
+else we enter the Door square and we would need one more movement to close
+the program
 */
-static void	ft_unlock_exit(t_data *game, int x, int y)
+static void	ft_unlock_exit(t_data *game, int x, int y, char direction)
 {
-	if (game->map[y][x] == 'E')
-	{
-		if (ft_find_c(game->map) == 0)
+	if (direction == 'L' && game->map[y][x - 1] == 'E' &&
+		ft_find_c(game->map) == 0)
 			ft_exit_ok(game);
-	}
+	if (direction == 'U' && game->map[y - 1][x] == 'E' &&
+		ft_find_c(game->map) == 0)
+			ft_exit_ok(game);
+	if (direction == 'R' && game->map[y][x + 1] == 'E' &&
+		ft_find_c(game->map) == 0)
+			ft_exit_ok(game);
+	if (direction == 'D' && game->map[y + 1][x] == 'E' &&
+		ft_find_c(game->map) == 0)
+			ft_exit_ok(game);
 }
 
 /*
@@ -30,7 +39,9 @@ This function updates the player position with the help of the mlx library. It
 will replace the player position with an empty (FLOOR) image. Then it will print
 the player again in the new position.
 Notice that x and y received is an address. We are using the content with *x
-and *y, and then sending the address to ft_print_player
+and *y, and then sending the address to ft_print_player.
+Finally, if the player moved to a tile with a C, it will be replaced by 0, to
+count the remaining collectibles and unlock the final exit tile.
 */
 static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 {
@@ -43,11 +54,7 @@ static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 	ft_print_player(game, x, y, direction);
 	if (game->map[*y][*x] == 'C')
 		game->map[*y][*x] = '0';
-	/// SEGUIR AQUI
-	// quitar xpm suelo
-	// cambiar condicion exit a x-1 (antes de entrar a casilla Exit)
-	//replace collectibles with 0 !!! This will be the count to exit
-	//ft_unlock_exit(game, *x, *y);
+	return ;
 }
 
 /*
@@ -63,6 +70,12 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 		&& ft_find_c(game->map) != 0))
 			return (1);
 	}
+	if (direction == 'U')
+	{
+		if (game->map[y - 1][x] == '1' || (game->map[y - 1][x] == 'E'
+		&& ft_find_c(game->map) != 0))
+			return (1);
+	}
 	if (direction == 'R')
 	{
 		if (game->map[y][x + 1] == '1' || (game->map[y][x + 1] == 'E'
@@ -72,12 +85,6 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 	if (direction == 'D')
 	{
 		if (game->map[y + 1][x] == '1' || (game->map[y + 1][x] == 'E'
-		&& ft_find_c(game->map) != 0))
-			return (1);
-	}
-	if (direction == 'U')
-	{
-		if (game->map[y - 1][x] == '1' || (game->map[y - 1][x] == 'E'
 		&& ft_find_c(game->map) != 0))
 			return (1);
 	}
@@ -101,7 +108,7 @@ static int	ft_move(t_data *game, char direction)
 	}
 	if (ft_player_stop(game, x, y, direction) == 1)
 		return (0);
-	ft_unlock_exit(game, x, y);
+	ft_unlock_exit(game, x, y, direction);
 	ft_move_player(game, &x, &y, direction);
 	printf("updated player ROW (y) after move is: |%d|\n", y);
 	printf("updated player COLUMN (x) after move is: |%d|\n\n", x);
