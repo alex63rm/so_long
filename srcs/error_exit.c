@@ -6,11 +6,36 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/20 22:09:48 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/23 22:50:11 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+/*
+This function checks if the last 4 chars of the 1st argument
+are .ber
+*/
+void	ft_check_extension(t_data *game, char *str)
+{
+	printf("entered check ext\n");
+	int	i;
+	int	len;
+
+	i = 0;
+	while (str[i])
+		i++;
+	len = i;
+	printf("len-4:%c\n", str[len - 4]);
+	printf("len-3:%c\n", str[len - 3]);
+	printf("len-2:%c\n", str[len - 2]);
+	printf("len-1:%c\n", str[len - 1]);
+	if (str[len - 4] != '.' || str[len - 3] != 'b' ||
+		str[len - 2] != 'e' || str[len - 1] != 'r')
+		ft_error_exit(WRONG_EXT, game);
+	return ;
+
+}
 
 void	ft_free_map(char **map)
 {
@@ -51,6 +76,7 @@ We need t_data *game to delete the original variable, not a local copy
 */
 void	ft_error_exit(int type, t_data *game)
 {
+	printf("entered error exit\n");
 	if (type == WRONG_ARGS)
 		printf("Error\nWrong number of arguments. Just filepath is allowed\n");
 	if (type == EMPTY_MAP)
@@ -63,9 +89,12 @@ void	ft_error_exit(int type, t_data *game)
 		printf("Error\nInvalid object type or number. Allowed types and count: P = 1, E = 1, C >= 1\n");
 	if (type == INVALID_PATH)
 		printf("Error\nPlayer is unable to collect all objects and reach the exit\n");
-
+	if (type == WRONG_EXT)
+		printf("Error\nFile must have a .ber extension\n");
 
 	//free everything before exiting
+	// AQUI HAY ALGUN ERROR SIGSEV
 	ft_general_free(game);
+
 	exit (-1);
 }

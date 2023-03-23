@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/20 21:56:03 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/23 22:23:30 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define	INVALID_PATH 105
 #define INVALID_XPM 106
 #define MANUAL_CLOSE 107
+#define WRONG_EXT 108
 
 //----------------------------XPM CONSTANTS-----------------------
 
@@ -61,6 +62,8 @@ typedef struct	s_pos
 }	t_pos;
 
 //--------------------MAIN FT----------------------
+
+void	ft_check_extension(t_data *game, char *str);
 void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
 void	ft_map_iserror(t_data *game);
@@ -69,8 +72,6 @@ int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);
 void	ft_scan_map(t_data *game);
 int		ft_input(int key, t_data *game);
-
-
 
 //--------------------UTILS----------------------
 int		ft_strlen_line(char *str);
