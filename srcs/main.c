@@ -6,31 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/23 22:33:51 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:39:27 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
-
-/*
-This function returns the length of a line up to the '\n', i.e, the lenght
-of the first line of the map
-*/
-int	ft_strlen_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return (-1);
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			break ;
-		i++;
-	}
-	return (i);
-}
 
 /*
 This function starts the game by using some defined functions from the
@@ -74,7 +54,7 @@ int	main(int argc, char **argv)
 		ft_map_iserror(&game);
 
 	// JUST PRINT TEST
-		printf("map is correct. map is:\n");
+		ft_printf("map is correct. map is:\n");
 		ft_print_map(game);
 	// JUST PRINT TEST
 
@@ -82,6 +62,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		ft_error_exit(WRONG_ARGS, &game);
-	printf("exit status 0\n");
+	ft_printf("exit status 0\n");
 	return (0);
 }

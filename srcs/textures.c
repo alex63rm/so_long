@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:12:39 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/20 21:31:20 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:29:44 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static void	ft_load_texture(t_data *game, char c, int x, int y)
 {
 	if (c == '1')
 		ft_put_image(game, WALL, x, y);
-	if (c == '0')
+	else if (c == '0')
 		ft_put_image(game, FLOOR, x, y);
-	if (c == 'P')
+	else if (c == 'P')
 		ft_put_image(game, PLAYER_D, x, y);
-	if (c == 'C')
+	else if (c == 'C')
 		ft_put_image(game, COLLECT, x, y);
-	if (c == 'E')
+	else if (c == 'E')
 		ft_put_image(game, EXIT, x, y);
 
 }

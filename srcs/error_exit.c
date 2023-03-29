@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/23 22:50:11 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:32:10 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	ft_error_exit(int type, t_data *game)
 		printf("Error\nPlayer is unable to collect all objects and reach the exit\n");
 	if (type == WRONG_EXT)
 		printf("Error\nFile must have a .ber extension\n");
+	if (type == INVALID_XPM)
+		printf("Error\nXPM file not found");
 
 	//free everything before exiting
 	// AQUI HAY ALGUN ERROR SIGSEV

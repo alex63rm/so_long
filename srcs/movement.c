@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/20 22:16:04 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:22:40 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 	ft_print_player(game, x, y, direction);
 	if (game->map[*y][*x] == 'C')
 		game->map[*y][*x] = '0';
-	return ;
 }
 
 /*
@@ -68,6 +67,7 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 	{
 		if (game->map[y][x - 1] == '1' || (game->map[y][x - 1] == 'E'
 		&& ft_find_c(game->map) != 0))
+		
 			return (1);
 	}
 	if (direction == 'U')
@@ -110,8 +110,8 @@ static int	ft_move(t_data *game, char direction)
 		return (0);
 	ft_unlock_exit(game, x, y, direction);
 	ft_move_player(game, &x, &y, direction);
-	printf("updated player ROW (y) after move is: |%d|\n", y);
-	printf("updated player COLUMN (x) after move is: |%d|\n\n", x);
+	ft_printf("updated player ROW (y) after move is: |%d|\n", y);
+	ft_printf("updated player COLUMN (x) after move is: |%d|\n\n", x);
 	return (1);
 }
 
@@ -137,46 +137,23 @@ int	ft_input(int key, t_data *game)
 	if (!i)
 		i = 0;
 	move_flag = 1;
-
-	//LINUX - CUT HERE
-	if (key == 65361 || key == 65362 || key == 65363 || key == 65364 || key == 65307)
+	if (key == 123 || key == 124 || key == 125 || key == 126 || key == 53)
 	{
-		if (key == 65307)
+		if (key == 53)
 		 	ft_exit_ok(game);
-		else if (key == 65361)
+		if (key == 123)
 			move_flag = ft_move(game, 'L');
-		else if (key == 65362)
-			move_flag = ft_move(game, 'U');
-		else if (key == 65363)
+		if (key == 124)
 			move_flag = ft_move(game, 'R');
-		else if (key == 65364)
+		if (key == 125)
 			move_flag = ft_move(game, 'D');
+		if (key == 126)
+			move_flag = ft_move(game, 'U');
 		if (move_flag == 1)
 		{
 			i++;
-			printf("Movement #: |%d|, key pressed |%d|\n", i, key);
+			ft_printf("Movement #: |%d| -> key pressed |%d|\n", i, key);
 		}
-	// LINUX - CUT HERE
-
-	//MacOS - CUT HERE
-	// if (key == 123 || key == 124 || key == 125 || key == 126 || key == 53)
-	// {
-	// 	if (key == 53)
-	// 	 	ft_exit_ok(game);
-	// 	if (key == 123)
-	// 		move_flag = ft_move(game, 'L');
-	// 	if (key == 124)
-	// 		move_flag = ft_move(game, 'R');
-	// 	if (key == 125)
-	// 		move_flag = ft_move(game, 'D');
-	// 	if (key == 126)
-	// 		move_flag = ft_move(game, 'U');
-	// 	if (move_flag == 1)
-	// 	{
-	// 		i++;
-	// 		printf("Movement #: |%d|\n, key pressed |%d|", i, key);
-	// 	}
-	// MacOS - CUT HERE
 	}
 	return (0);
 }

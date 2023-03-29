@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/23 22:23:30 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:07:21 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 #include"../mlx/mlx.h"
-#include"printf.h"
+#include"../ft_printf/ft_printf.h"
 #include"../ft_gnl/get_next_line.h"
 #include<stdio.h>
 #include<fcntl.h>

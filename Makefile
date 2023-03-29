@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/03/15 21:42:34 by alejarod         ###   ########.fr        #
+#    Updated: 2023/03/29 22:47:41 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,60 +25,60 @@ GREEN_PRE = '\033[32m'
 RED_PRE = '\033[31m'
 RESET_BLACK = '\033[0m'
 
-# Paths
-LIBFT_PATH = libft
-GNL_PATH = ft_gnl
-SRCS_PATH = srcs
 
-# Files
-LIBFT_SRCS = $(wildcard $(LIBFT_PATH)/*.c)
-GNL_SRCS = $(wildcard $(GNL_PATH)/*.c)
-SRCS = $(wildcard $(SRCS_PATH)/*.c)
-OBJS = $(LIBFT_SRCS:.c=.o) $(GNL_SRCS:.c=.o) $(SRCS:.c=.o)
+# External Paths and libraries
+PRINTF_PATH = ./ft_printf
+PRINTF_A = $(PRINTF_PATH)/libftprintf.a
+
+GNL_PATH = ./ft_gnl
+GNL_A = $(GNL_PATH)/gnl.a
+
+MLX_PATH = ./mlx
+MLX_A = -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+
+# Project sources and objects
+SRCS_PATH = ./srcs
+SRCS = error_exit.c error_utils.c main.c map_error.c map.c move_utils.c movement.c textures.c zz_temp_utils.c
+
+OBJS_PATH = ./objs
+OBJS = $(addprefix $(OBJS_PATH)/, $(SRCS:.c=.o))
+
+
+#Object rule and move them to the object folder
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c | $(OBJS_PATH)
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 # Targets
 all: $(NAME)
 
-#------------------------------COMPILE MAC OS-----------------------------------
-
-#Compile in MacOS (Ctrl + / to comment multiple lines in VSCode)
-# %.o: %.c
-# 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
-
-# $(NAME): $(OBJS)
-# 	MAKE -C mlx
-# 	$(CC) $(CFLAGS) -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
-# 	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
-# 	@echo "./so_long <.ber file> to run"
-
-#-------------------------------COMPILE IN LINUX--------------------------------
-
-# Compile in LINUX (Cmd + / to comment multiple lines in VSCode)
-%.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-	@echo $(GREEN_PRE)"MLX & so_long compiled !"$(RESET_BLACK)
+	MAKE -C $(PRINTF_PATH)
+	MAKE -C $(GNL_PATH)
+	MAKE -C $(MLX_PATH)
+	$(CC) $^ $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@
+	@echo $(GREEN_PRE)"PRINTF, GNL & MLX compiled!"$(RESET_BLACK)
 	@echo "./so_long <.ber file> to run"
 
-#------------------------------------------------------------------------------
+#create the object directory
+$(OBJS_PATH):
+	mkdir $@
 
 # removes the .o files
 clean:
-	@$(RM) $(OBJS)
-	@$(RM) mlx/*.o
-	@$(RM) mlx_linux/obj/*.o
-	@$(RM) $(GNL_PATH)/*.o
+	@$(RM) $(OBJS_PATH)
+	MAKE -C $(PRINTF_PATH) clean
+	MAKE -C $(GNL_PATH) clean
+	MAKE -C $(MLX_PATH) clean
 	@echo $(RED_PRE)"Object files deleted !"$(RESET_BLACK)
 
-# removes .o files & push_swap executable
+# removes .o files & so_long executable
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) libs/mlx/libmlx.a
-#	$(RM) mlx/libmlx.dylib
-	@echo $(RED_PRE)"so_long.a & libmlx.a deleted !"$(RESET_BLACK)
+	MAKE -C $(PRINTF_PATH) fclean
+	MAKE -C $(GNL_PATH) fclean
+	MAKE -C $(MLX_PATH) clean
+	@echo $(RED_PRE)"so_long.a deleted !"$(RESET_BLACK)
 
 re: fclean all
 
-.PHONY: all test checker clean fclean re
+.PHONY: all clean fclean re

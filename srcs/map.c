@@ -6,11 +6,31 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 20:20:27 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/23 20:09:25 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:39:36 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+/*
+This function returns the length of a line up to the '\n', i.e, the lenght
+of the first line of the map
+*/
+int	ft_strlen_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			break ;
+		i++;
+	}
+	return (i);
+}
 
 /*
 This function calculates the number of rows as the first step to create the map
@@ -65,7 +85,7 @@ char	**ft_map_fill(int *rows, char *str)
 	fd = open(str, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * (*rows + 1));
 	if (!map)
-		return (NULL);
+		return (0);
 	while (i < *rows)
 	{
 		map[i] = get_next_line(fd);
@@ -75,7 +95,7 @@ char	**ft_map_fill(int *rows, char *str)
 		map[i][line_len] = '\0';
 		i++;
 	}
-	map[i] = '\0';
+	map[i] = 0;
 	close(fd);
 	//printf("exit map_fill\n");
 	return (map);
