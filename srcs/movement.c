@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/29 22:22:40 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:23:20 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ so the first time the function is called, i is initialized to 0 and
 subsequent calls will retain the previous value of i.
 key codes correspond to specific keys on the keyboard, and they are usually
 defined by the operating system.
-macOS:
-123 left arrow / 124: right / 125 down / 126 up. / 53 ESC
 Linux-Ubuntu
 65361: left / 65362 up / 65363 right / 65364 down / 65307 ESC
 The move flag determines if the player moved, by receiving a value from
