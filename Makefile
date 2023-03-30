@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/03/29 22:47:41 by alejarod         ###   ########.fr        #
+#    Updated: 2023/03/30 20:33:20 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@
 
 # Variables
 NAME = so_long
-CC = gcc
-CFLAGS	= -Wall -Werror -Wextra # -g3 -fsanitize=address
+CC = gcc -g3 -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra  
 RM = rm -rf
 AR = ar rcs
 
@@ -39,6 +39,7 @@ MLX_A = -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 # Project sources and objects
 SRCS_PATH = ./srcs
 SRCS = error_exit.c error_utils.c main.c map_error.c map.c move_utils.c movement.c textures.c zz_temp_utils.c
+HEADER = $(SRCS_PATH)/so_long.h
 
 OBJS_PATH = ./objs
 OBJS = $(addprefix $(OBJS_PATH)/, $(SRCS:.c=.o))
@@ -81,4 +82,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+normi:
+	norminette $(SRCS_PATH)/*.c $(HEADER) 
+
+.PHONY: all clean fclean re normi

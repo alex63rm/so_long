@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/29 22:07:21 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:36:51 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_check_extension(t_data *game, char *str);
 void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
 void	ft_map_iserror(t_data *game);
-void	ft_error_exit(int type, t_data *game);
+int		ft_error_exit(int type, t_data *game);
 int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);
 void	ft_scan_map(t_data *game);

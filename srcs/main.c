@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/29 22:39:27 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:41:01 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ int	main(int argc, char **argv)
 
 		ft_init_game(&game);
 	}
-	else
-		ft_error_exit(WRONG_ARGS, &game);
-	ft_printf("exit status 0\n");
+	ft_error_exit(WRONG_ARGS, &game);
+	
 	return (0);
 }
