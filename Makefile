@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/03/30 20:33:20 by alejarod         ###   ########.fr        #
+#    Updated: 2023/03/30 21:04:34 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = so_long
 CC = gcc -g3 -fsanitize=address
 CFLAGS	= -Wall -Werror -Wextra  
-RM = rm -rf
+RM = rm
 AR = ar rcs
 
 # Colors (ANSI escape sequence)
@@ -54,10 +54,13 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	MAKE -C $(PRINTF_PATH)
+	@echo $(GREEN_PRE)"PRINTF compiled!"$(RESET_BLACK)
 	MAKE -C $(GNL_PATH)
+	@echo $(GREEN_PRE)"GNL compiled!"$(RESET_BLACK)
 	MAKE -C $(MLX_PATH)
+	@echo $(GREEN_PRE)"MLX compiled!"$(RESET_BLACK)
 	$(CC) $^ $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@
-	@echo $(GREEN_PRE)"PRINTF, GNL & MLX compiled!"$(RESET_BLACK)
+	@echo $(GREEN_PRE)"so_long compiled!"$(RESET_BLACK)
 	@echo "./so_long <.ber file> to run"
 
 #create the object directory
@@ -66,7 +69,7 @@ $(OBJS_PATH):
 
 # removes the .o files
 clean:
-	@$(RM) $(OBJS_PATH)
+	@$(RM) -rf $(OBJS_PATH)
 	MAKE -C $(PRINTF_PATH) clean
 	MAKE -C $(GNL_PATH) clean
 	MAKE -C $(MLX_PATH) clean

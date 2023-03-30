@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:12:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/19 17:40:58 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:08:23 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,7 @@ int	ft_find_c(char **map)
 		while (map[y][x] != '\0')
 		{
 			if (map[y][x] == 'C')
-			{
-				printf("collectible remaining");
 				return (1);
-			}
 			x++;
 		}
 		y++;

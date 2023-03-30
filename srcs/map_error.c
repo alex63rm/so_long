@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/19 13:29:02 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:07:42 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_map_isrectangle(char **map)
 
 	i = 0;
 	line_len = ft_strlen_line(map[i]);
-	printf("first line len: %d\n", line_len);
+	ft_printf("first line len: %d\n", line_len);
 	if (line_len < 0)
 		return (1);
 	while (map[i])
