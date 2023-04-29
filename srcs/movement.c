@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/30 19:23:20 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:09:33 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 	{
 		if (game->map[y][x - 1] == '1' || (game->map[y][x - 1] == 'E'
 		&& ft_find_c(game->map) != 0))
-		
 			return (1);
 	}
 	if (direction == 'U')
