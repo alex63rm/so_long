@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/30 21:17:08 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:27:14 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 This function checks if the last 4 chars of the 1st argument
 are .ber
 */
-void	ft_check_extension(t_data *game, char *str)
+int	ft_check_extension(t_data *game, char *str)
 {
 	int	i;
 	int	len;
@@ -27,8 +27,11 @@ void	ft_check_extension(t_data *game, char *str)
 	len = i;
 	if (str[len - 4] != '.' || str[len - 3] != 'b' ||
 		str[len - 2] != 'e' || str[len - 1] != 'r')
+	{
 		ft_error_exit(WRONG_EXT, game);
-	return ;
+		return (1);
+	}
+	return (0);
 }
 
 void	ft_free_map(char **map)
@@ -58,6 +61,7 @@ int	ft_exit_ok(t_data *game)
 {
 	if (game->mlx && game->window)
 		mlx_destroy_window(game->mlx, game->window);
+	exit(0);
 	return (0);
 }
 
@@ -71,25 +75,20 @@ call ft_general_free()
 int	ft_error_exit(int type, t_data *game)
 {
 	if (type == WRONG_ARGS)
-		return (ft_printf("Error\nWrong number of arguments. Just filepath is allowed\n"));
-	if (type == EMPTY_MAP)
-		ft_printf("Error\nMap is empty\n");
-	if (type == INVALID_MAP)
-		ft_printf("Error\nMap must be a rectangle.\n");
-	if (type == INVALID_WALLS)
-		ft_printf("Error\nMap must be surrounded by walls (wall char == '1')\n");
-	if (type == INVALID_OBJECTS)
-		ft_printf("Error\nInvalid object type or number. Allowed types and count: P = 1, E = 1, C >= 1\n");
-	if (type == INVALID_PATH)
-		ft_printf("Error\nPlayer is unable to collect all objects and reach the exit\n");
+		return (ft_printf("Error\nWrong number of arguments. Just filepath is allowed\n"), 1);
 	if (type == WRONG_EXT)
-		ft_printf("Error\nFile must have a .ber extension\n");
+		return (ft_printf("Error\nInvalid map. File must have a .ber extension\n"), 1);
+	if (type == EMPTY_MAP)
+		return (ft_general_free(game), ft_printf("Error\nMap is empty\n"), 1);
+	if (type == INVALID_MAP)
+		return (ft_general_free(game), ft_printf("Error\nMap must be a rectangle.\n"), 1);
+	if (type == INVALID_WALLS)
+		return (ft_general_free(game),ft_printf("Error\nMap must be surrounded by walls (wall char == '1')\n"), 1);
+	if (type == INVALID_OBJECTS)
+		return (ft_general_free(game),ft_printf("Error\nInvalid object type or number. Allowed types and count: P = 1, E = 1, C >= 1\n"), 1);
+	if (type == INVALID_PATH)
+		return (ft_general_free(game),ft_printf("Error\nPlayer is unable to collect all objects and reach the exit\n"), 1);
 	if (type == INVALID_XPM)
-		ft_printf("Error\nXPM file not found");
-
-	//free everything before exiting
-	// AQUI HAY ALGUN ERROR SIGSEV
-	ft_general_free(game);
-
+		return (ft_general_free(game),ft_printf("Error\nXPM file not found"), 1);
 	return (0);
 }

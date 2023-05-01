@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/04/29 13:07:25 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:37:58 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		ft_check_extension(&game, argv[1]);
+		if (ft_check_extension(&game, argv[1]) == 1)
+			return (1);
 		ft_save_map(&game, argv[1]);
-		ft_map_iserror(&game);
+		if (ft_map_iserror(&game) == 1)
+			return (1);
 
 	// JUST PRINT TEST
 		ft_printf("map is correct. map is:\n");

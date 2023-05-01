@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/04/29 13:38:09 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:39:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,21 +143,21 @@ Step 2. Map is a rectangle and must be surrounded by walls
 Step 3. Check Player (P), Collectibles (C) and Exit (E)
 Step 4. There must be a valid path to collect and exit
 */
-void	ft_map_iserror(t_data *game)
+int	ft_map_iserror(t_data *game)
 {
 	int	i;
 
 	i = 0;
 	if (game->map[i] == NULL)
-		ft_error_exit(EMPTY_MAP, game);
+		return (ft_error_exit(EMPTY_MAP, game), 1);
 	if (ft_map_isrectangle(game->map) == 1)
-		ft_error_exit(INVALID_MAP, game);
+		return (ft_error_exit(INVALID_MAP, game), 1);
 	if (ft_map_walls(game->map) == 1)
-		ft_error_exit(INVALID_WALLS, game);
+		return (ft_error_exit(INVALID_WALLS, game), 1);
 	if (ft_object_iscorrect(game->map, 'P') == 1 || ft_object_iscorrect(game->map, 'E')
 		|| ft_object_iscorrect(game->map, 'C') == 1)
-		ft_error_exit(INVALID_OBJECTS, game);
+		return (ft_error_exit(INVALID_OBJECTS, game), 1);
 	if (ft_path_iscorrect(game) == 1)
-		ft_error_exit(INVALID_PATH, game);
-	return ;
+		return (ft_error_exit(INVALID_PATH, game), 1);
+	return (0);
 }

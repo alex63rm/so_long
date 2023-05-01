@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 20:20:27 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/29 22:39:36 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:09:09 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	ft_save_map(t_data *game, char *str)
 	line = get_next_line(fd);
 	while (line)
 	{
+		free(line);
 		//pending to check behaviour in iMac with valgrind
 		//free(line);
 		//line = NULL;
 		line = get_next_line(fd);
 		rows++;
 	}
-	//free(line);
+	free(line);
 	game->map_rows = rows;
 	game->map = ft_map_fill(&rows, str);
 }
