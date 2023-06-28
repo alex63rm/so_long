@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/05/01 20:56:22 by alejarod         ###   ########.fr        #
+#    Updated: 2023/06/28 22:43:55 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 
 # Variables
 NAME = so_long
-CC = gcc -g3 # -fsanitize=address
+CC = gcc -g3 #-fsanitize=address
 CFLAGS	= -Wall -Werror -Wextra  
 RM = rm
 AR = ar rcs

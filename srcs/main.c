@@ -6,11 +6,21 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/05/01 20:37:58 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:49:53 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+static void	ft_init_struct(t_data *game)
+{
+	game->mlx = NULL;
+	game->window = NULL;
+	game->map = NULL;
+	game->map_rows = 0;
+	game->p_x_copy = 0;
+	game->p_y_copy = 0; 
+}
 
 /*
 This function starts the game by using some defined functions from the
@@ -49,6 +59,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+		ft_init_struct(&game);
 		if (ft_check_extension(&game, argv[1]) == 1)
 			return (1);
 		ft_save_map(&game, argv[1]);
@@ -62,6 +73,7 @@ int	main(int argc, char **argv)
 
 		ft_init_game(&game);
 	}
+	system("leaks so_long");
 	ft_error_exit(WRONG_ARGS, &game);
 	return (0);
 }

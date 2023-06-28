@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/05/01 20:39:46 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:54:17 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef struct	s_pos
 
 //--------------------MAIN FT----------------------
 
-int	ft_check_extension(t_data *game, char *str);
+int		ft_check_extension(t_data *game, char *str);
 void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
-int	ft_map_iserror(t_data *game);
+int		ft_map_iserror(t_data *game);
 int		ft_error_exit(int type, t_data *game);
 int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);

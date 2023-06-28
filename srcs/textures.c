@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:12:39 by alejarod          #+#    #+#             */
-/*   Updated: 2023/05/01 21:51:57 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:45:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static void	ft_put_image(t_data *game, char *c, int x, int y)
 
 	img = mlx_xpm_file_to_image(game->mlx, c, &img_w, &img_h);
 	if (!img)
+	{
 		ft_error_exit(INVALID_XPM, game);
+		//exit (1);
+	}
 	mlx_put_image_to_window(game->mlx, game->window, img, x, y);
 }
 

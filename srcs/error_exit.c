@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/05/01 21:27:14 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:57:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_free_map(char **map)
 	free(map);
 }
 
-static void	ft_general_free(t_data *game)
+static void	ft_gen_free(t_data *game)
 {
 	if (game->map)
 		ft_free_map(game->map);
@@ -75,20 +75,27 @@ call ft_general_free()
 int	ft_error_exit(int type, t_data *game)
 {
 	if (type == WRONG_ARGS)
-		return (ft_printf("Error\nWrong number of arguments. Just filepath is allowed\n"), 1);
+		return (ft_printf("Error\nWrong number of arguments\n"), exit(1), 1);
 	if (type == WRONG_EXT)
-		return (ft_printf("Error\nInvalid map. File must have a .ber extension\n"), 1);
+		return (ft_printf("Error\nInvalid map: only .ber extension \
+	\n"), exit(1), 1);
 	if (type == EMPTY_MAP)
-		return (ft_general_free(game), ft_printf("Error\nMap is empty\n"), 1);
+		return (ft_gen_free(game), ft_printf("Error\nMap is empty or wrong \
+	map filename\n"), exit(1), 1);
 	if (type == INVALID_MAP)
-		return (ft_general_free(game), ft_printf("Error\nMap must be a rectangle.\n"), 1);
+		return (ft_gen_free(game), ft_printf("Error\nMap must be a \
+	rectangle.\n"), exit(1), 1);
 	if (type == INVALID_WALLS)
-		return (ft_general_free(game),ft_printf("Error\nMap must be surrounded by walls (wall char == '1')\n"), 1);
+		return (ft_gen_free(game),ft_printf("Error\nMap must be surrounded \
+	by walls (wall char == '1')\n"), exit(1), 1);
 	if (type == INVALID_OBJECTS)
-		return (ft_general_free(game),ft_printf("Error\nInvalid object type or number. Allowed types and count: P = 1, E = 1, C >= 1\n"), 1);
+		return (ft_gen_free(game),ft_printf("Error\nInvalid object type or \
+	number. Allowed types and count: P = 1, E = 1, C >= 1\n"), exit(1), 1);
 	if (type == INVALID_PATH)
-		return (ft_general_free(game),ft_printf("Error\nPlayer is unable to collect all objects and reach the exit\n"), 1);
+		return (ft_gen_free(game),ft_printf("Error\nPlayer is unable to \
+		collect all objects and reach the exit\n"), exit(1), 1);
 	if (type == INVALID_XPM)
-		return (ft_general_free(game),ft_printf("Error\nXPM file not found"), 1);
-	return (0);
+		return (ft_gen_free(game),ft_printf("Error\nXPM file not found\n"), \
+	exit(1), 1);
+	exit (1);
 }
