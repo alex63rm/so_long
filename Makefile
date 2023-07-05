@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/06/28 22:43:55 by alejarod         ###   ########.fr        #
+#    Updated: 2023/07/05 20:34:24 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ $(NAME): $(OBJS)
 	@echo $(GREEN_PRE)"PRINTF compiled!"$(RESET_BLACK)
 	MAKE -C $(GNL_PATH)
 	@echo $(GREEN_PRE)"GNL compiled!"$(RESET_BLACK)
-	MAKE -C $(MLX_PATH)
+	MAKE -C $(MLX_PATH) 2>logs
+	$(RM) logs
 	@echo $(GREEN_PRE)"MLX compiled!"$(RESET_BLACK)
 	$(CC) $^ $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@
 	@echo $(GREEN_PRE)"so_long compiled!"$(RESET_BLACK)
