@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 11:16:52 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 14:44:57 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,30 @@ It loops all the positions within the wall
 static int	ft_map_floor(char **map)
 {
 	int	i;
-	int	len;
+	int	j;
 
 	i = 0;
-	len = ft_strlen_line(map[i]);
 	while (map[i])
 	{
-		if (map[i][0] != '1' || map[i][len - 1] != '1')
-			return (1);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1')
+				j++;
+			else if (map[i][j] == '0')
+				j++;
+			else if (map[i][j] == 'E')
+				j++;
+			else if (map[i][j] == 'P')
+				j++;
+			else if (map[i][j] == 'C')
+				j++;
+			else if (map[i][j] == '\n')
+				j++;
+			else
+				return (1);
+		}
 		i++;
-	}
-	while (len - 1 > 0)
-	{
-		if (map[0][len - 1] != '1' || map[i - 1][len - 1] != '1')
-			return (1);
-		len--;
 	}
 	return (0);
 }

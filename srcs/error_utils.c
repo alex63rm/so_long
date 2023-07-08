@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:53:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/15 21:22:26 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:02:21 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ the position is a wall '1'. Every time it visits a position, it marks it as
 */
 void	ft_floodfill(char **map_copy, t_pos map_data, int x, int y)
 {
-	if (y >= map_data.size_y || x >= map_data.size_x || map_copy[y][x] == '1'
+	if (y >= map_data.size_y || x >= map_data.size_x || map_copy[y][x] == '1' \
 	|| map_copy[y][x] == 'V')
 		return ;
 	else

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 11:15:12 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:15:48 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_error_exit(int type, t_data *game)
 	if (type == INVALID_WALLS)
 		return (ft_gen_free(game),ft_printf("Error\nMap must be surrounded \
 	by walls (wall char == '1')\n"), exit(1), 1);
-	if (type == INVALID_WALLS)
+	if (type == INVALID_FLOOR)
 		return (ft_gen_free(game),ft_printf("Error\nFloor char must be '0'\n"), exit(1), 1);
 	if (type == INVALID_OBJECTS)
 		return (ft_gen_free(game),ft_printf("Error\nInvalid object type or \
