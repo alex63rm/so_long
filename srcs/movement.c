@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 18:12:11 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:30:22 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,28 @@ static void	ft_unlock_exit(t_data *game, int x, int y, char direction)
 {
 	if (direction == 'L' && game->map[y][x - 1] == 'E' &&
 		ft_find_c(game->map) == 0)
-		{
-			ft_printf("Movement #: |%d|\n", game->final_move);
-			ft_exit_ok(game);
-		}
+	{
+		ft_printf("Movement #: |%d|\n", game->final_move);
+		ft_exit_ok(game);
+	}
 	if (direction == 'U' && game->map[y - 1][x] == 'E' &&
 		ft_find_c(game->map) == 0)
-		{
-			ft_printf("Movement #: |%d|\n", game->final_move);
-			ft_exit_ok(game);
-		}
+	{
+		ft_printf("Movement #: |%d|\n", game->final_move);
+		ft_exit_ok(game);
+	}
 	if (direction == 'R' && game->map[y][x + 1] == 'E' &&
 		ft_find_c(game->map) == 0)
-		{
-			ft_printf("Movement #: |%d|\n", game->final_move);
-			ft_exit_ok(game);
-		}
+	{
+		ft_printf("Movement #: |%d|\n", game->final_move);
+		ft_exit_ok(game);
+	}
 	if (direction == 'D' && game->map[y + 1][x] == 'E' &&
 		ft_find_c(game->map) == 0)
-		{
-			ft_printf("Movement #: |%d|\n", game->final_move);
-			ft_exit_ok(game);
-		}
+	{
+		ft_printf("Movement #: |%d|\n", game->final_move);
+		ft_exit_ok(game);
+	}
 }
 
 /*
@@ -53,8 +53,8 @@ This function updates the player position with the help of the mlx library.
 3. Replace the previous position of the player with the FLOOR.
 4. If the player is on top of the Exit, put the exit after the player moves
 5. Print the player in the new position 
-Notice that x and y received is a memory address. We are using the content with *x
-and *y, and then sending the address to ft_print_player.
+Notice that x and y received is a memory address. We are using the content 
+with *x and *y, and then sending the address to ft_print_player.
 If the player moved to a tile with a C, it will be replaced by 0, to
 count the remaining collectibles and unlock the final exit tile.
 */
@@ -64,7 +64,7 @@ static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 	int		img_height;
 	void	*img;
 	void	*img2;
-	
+
 	if (game->map[*y][*x] == 'C')
 		game->map[*y][*x] = '0';
 	ft_unlock_exit(game, *x, *y, direction);
@@ -73,7 +73,8 @@ static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 	if (game->map[*y][*x] == 'E')
 	{
 		img2 = mlx_xpm_file_to_image(game->mlx, EXIT, &img_width, &img_height);
-		mlx_put_image_to_window(game->mlx, game->window, img2, (*x * 80), (*y * 80));
+		mlx_put_image_to_window(game->mlx, game->window, img2, (*x * 80), \
+		(*y * 80));
 	}
 	ft_print_player(game, x, y, direction);
 }
@@ -107,6 +108,7 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 	}
 	return (0);
 }
+
 /*
 This function gets the initial position of the player the first time it runs.
 Step 1. Check if the player moved or not and returns if it did not.
@@ -149,24 +151,21 @@ int	ft_input(int key, t_data *game)
 	if (!i)
 		i = 0;
 	move_flag = 1;
-	if (key == 123 || key == 124 || key == 125 || key == 126 || key == 53)
+	if (key == 53)
+		ft_exit_ok(game);
+	if (key == 123)
+		move_flag = ft_move(game, 'L');
+	if (key == 124)
+		move_flag = ft_move(game, 'R');
+	if (key == 125)
+		move_flag = ft_move(game, 'D');
+	if (key == 126)
+		move_flag = ft_move(game, 'U');
+	if (move_flag == 1)
 	{
-		if (key == 53)
-		 	ft_exit_ok(game);
-		if (key == 123)
-			move_flag = ft_move(game, 'L');
-		if (key == 124)
-			move_flag = ft_move(game, 'R');
-		if (key == 125)
-			move_flag = ft_move(game, 'D');
-		if (key == 126)
-			move_flag = ft_move(game, 'U');
-		if (move_flag == 1)
-		{
-			i++;
-			game->final_move = i + 1;
-			ft_printf("Movement #: |%d|\n", i);
-		}
+		i++;
+		game->final_move = i + 1;
+		ft_printf("Movement #: |%d|\n", i);
 	}
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:12:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 16:30:51 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:58:59 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 /*
 This function chooses the corresponding image of the player depending on the
@@ -45,24 +45,25 @@ int	ft_print_player(t_data *game, int *x, int *y, char direction)
 	int		img_height;
 	int		img_width;
 
-	img = mlx_xpm_file_to_image(game->mlx, ft_player_look(direction),
+	img = mlx_xpm_file_to_image(game->mlx, ft_player_look(direction), \
 		&img_width, &img_height);
 	if (!img)
 		ft_error_exit(106, game);
 	if (direction == 'L')
-		mlx_put_image_to_window(game->mlx, game->window,
+		mlx_put_image_to_window(game->mlx, game->window, \
 		img, (--(*x)) * 80, (*y * 80));
 	if (direction == 'R')
-		mlx_put_image_to_window(game->mlx, game->window,
+		mlx_put_image_to_window(game->mlx, game->window, \
 		img, (++(*x)) * 80, (*y * 80));
 	if (direction == 'U')
-		mlx_put_image_to_window(game->mlx, game->window,
+		mlx_put_image_to_window(game->mlx, game->window, \
 		img, *x * 80, (--(*y) * 80));
 	if (direction == 'D')
-		mlx_put_image_to_window(game->mlx, game->window,
+		mlx_put_image_to_window(game->mlx, game->window, \
 		img, *x * 80, (++(*y) * 80));
 	return (0);
 }
+
 /*
 This function gets the position of the player in the map. It then updats the
 coordinates in the map_data struct and copies them to the game struct

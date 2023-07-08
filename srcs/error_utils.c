@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 11:53:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 15:02:21 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:45:44 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 /*
 This function loops every position of the 2D map with a double loop
@@ -40,6 +40,7 @@ char	ft_get_object(char **map, char c)
 	}
 	return (count);
 }
+
 /*
 This function loops the copy of the map once it has been floodfilled. If it finds
 an E or C it means that the exit or a collectible was not reachable and thus

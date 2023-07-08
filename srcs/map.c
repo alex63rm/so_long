@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 20:20:27 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:02:17 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:11:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 /*
 This function returns the length of a line up to the '\n', i.e, the lenght
@@ -32,8 +32,7 @@ int	ft_strlen_line(char *str)
 	return (i);
 }
 
-/*
-This function calculates the number of rows as the first step to create the map
+/* This function calculates the number of rows to create the map
 Step 1. Create a file descriptor and open the file. The file name is argv[1],
 which must be the name of a map: map_name.ber
 Step 2. With the help of GNL, read the first line until \n or EOF (end of file)
@@ -94,4 +93,30 @@ char	**ft_map_fill(int *rows, char *str)
 	map[i] = 0;
 	close(fd);
 	return (map);
+}
+
+/* This function returns 1 as error if the floor is not a '0', as required
+by the subject. It loops all the positions within the wall. If it finds a
+char that is not allowed, the function returns 1 as error.
+*/
+int	ft_map_floor(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'E' \
+			|| map[i][j] == 'P' || map[i][j] == 'C' || map[i][j] == '\n')
+				j++;
+			else
+				return (1);
+		}
+		i++;
+	}
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 18:09:32 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:47:07 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 static void	ft_init_struct(t_data *game)
 {
@@ -37,9 +37,8 @@ library documentation.
 static void	ft_init_game(t_data *game)
 {
 	game->mlx = mlx_init();
-	game->window = mlx_new_window(game->mlx, (ft_strlen_line(game->map[0]) * 80),
-	((game->map_rows) * 80), "Forest Adventure");
-
+	game->window = mlx_new_window(game->mlx, (ft_strlen_line(game->map[0]) \
+	* 80), ((game->map_rows) * 80), "Forest Adventure");
 	ft_scan_map(game);
 	mlx_key_hook(game->window, *ft_input, game);
 	mlx_hook(game->window, 17, 1L << 17, ft_exit_ok, game);

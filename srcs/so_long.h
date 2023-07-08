@@ -6,43 +6,42 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 18:09:04 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:02:07 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include"../mlx/mlx.h"
-#include"../ft_printf/ft_printf.h"
-#include"../ft_gnl/get_next_line.h"
-#include<stdio.h>
-#include<fcntl.h>
+# include "../mlx/mlx.h"
+# include "../ft_printf/ft_printf.h"
+# include "../ft_gnl/get_next_line.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 //----------------------------ERROR TYPES-------------------------
 
-#define	WRONG_ARGS 100
-#define	EMPTY_MAP 101
-#define	INVALID_MAP 102
-#define	INVALID_WALLS 103
-#define	INVALID_OBJECTS 104
-#define	INVALID_PATH 105
-#define INVALID_XPM 106
-#define MANUAL_CLOSE 107
-#define WRONG_EXT 108
-#define INVALID_FLOOR 109
+# define WRONG_ARGS 100
+# define EMPTY_MAP 101
+# define INVALID_MAP 102
+# define INVALID_WALLS 103
+# define INVALID_OBJECTS 104
+# define INVALID_PATH 105
+# define INVALID_XPM 106
+# define MANUAL_CLOSE 107
+# define WRONG_EXT 108
+# define INVALID_FLOOR 109
 
 //----------------------------XPM CONSTANTS-----------------------
 
-#define WALL "textures/Wall.xpm"
-#define FLOOR "textures/Floor.xpm"
-#define COLLECT "textures/Collectible.xpm"
-#define EXIT "textures/Exit.xpm"
-#define PLAYER_U "textures/PlayerU.xpm"
-#define PLAYER_D "textures/PlayerD.xpm"
-#define PLAYER_L "textures/PlayerL.xpm"
-#define PLAYER_R "textures/PlayerR.xpm"
-
+# define WALL "textures/Wall.xpm"
+# define FLOOR "textures/Floor.xpm"
+# define COLLECT "textures/Collectible.xpm"
+# define EXIT "textures/Exit.xpm"
+# define PLAYER_U "textures/PlayerU.xpm"
+# define PLAYER_D "textures/PlayerD.xpm"
+# define PLAYER_L "textures/PlayerL.xpm"
+# define PLAYER_R "textures/PlayerR.xpm"
 
 typedef struct s_data
 {
@@ -55,7 +54,7 @@ typedef struct s_data
 	int		final_move;
 }	t_data;
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	int	p_x;
 	int	p_y;
@@ -69,7 +68,7 @@ int		ft_check_extension(t_data *game, char *str);
 void	ft_save_map(t_data *game, char *str);
 char	**ft_map_fill(int *rows, char *str);
 int		ft_map_iserror(t_data *game);
-int		ft_error_exit(int type, t_data *game);
+void	ft_error_exit(int type, t_data *game);
 int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);
 void	ft_scan_map(t_data *game);

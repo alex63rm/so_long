@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:12:39 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:06:07 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:01:51 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 /*
 This function uses the mlx library functions to convert the xpm file
@@ -46,7 +46,6 @@ static void	ft_load_texture(t_data *game, char c, int x, int y)
 		ft_put_image(game, COLLECT, x, y);
 	else if (c == 'E')
 		ft_put_image(game, EXIT, x, y);
-
 }
 
 /*
@@ -76,5 +75,4 @@ void	ft_scan_map(t_data *game)
 		y = y + 80;
 		i++;
 	}
-
 }

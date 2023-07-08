@@ -6,11 +6,11 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:01:10 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:05:04 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"so_long.h"
+#include "so_long.h"
 
 /*
 This function compares the len of the first line of the map against further
@@ -75,41 +75,6 @@ static int	ft_map_walls(char **map)
 	}
 	return (0);
 }
-/*
-This function returns 1 as error if the floor is not a '0', as required by the subject.
-It loops all the positions within the wall. If it finds a char that is not allowed, the
-function returns 1 as error.
-*/
-static int	ft_map_floor(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '1')
-				j++;
-			else if (map[i][j] == '0')
-				j++;
-			else if (map[i][j] == 'E')
-				j++;
-			else if (map[i][j] == 'P')
-				j++;
-			else if (map[i][j] == 'C')
-				j++;
-			else if (map[i][j] == '\n')
-				j++;
-			else
-				return (1);
-		}
-		i++;
-	}
-	return (0);
-}
 
 /*
 This functions checks if there are 0 or more than one P or E in the map.
@@ -127,9 +92,8 @@ static int	ft_object_iscorrect(char **map, char c)
 	return (0);
 }
 
-/*
-This function checks if there is a correct path
-Step 1. Create a copy of the original map. We are going to modify the values with
+/*Step 1. Create a copy of the original map. We are going to modify the
+values with
 floodfill algorithm, and we don't want to modify the original map.
 Step 2. Find the position of the player 'P'. The position of x and y gets saved
 in the structure thanks to the use of pointers.
@@ -154,7 +118,6 @@ static int	ft_path_iscorrect(t_data *game)
 	ft_copy_p_pos(game, &map_data);
 	return (0);
 }
-
 
 /*
 This function will check the different errors in the map
