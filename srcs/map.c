@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 20:20:27 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 19:11:38 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:14:50 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ int	ft_strlen_line(char *str)
 	return (i);
 }
 
-/* This function calculates the number of rows to create the map
-Step 1. Create a file descriptor and open the file. The file name is argv[1],
-which must be the name of a map: map_name.ber
-Step 2. With the help of GNL, read the first line until \n or EOF (end of file)
-Step 3. Keep reading in a loop until all the lines have been read. I decided
-to pass the address of rows to the next function to practice pointers.
-Step 4. Save the number of rows, it will be used later to open the game window
-Step 5. Call map_fill to save the map data in map variable inside of the structure
+/*
+Calculate the number of rows to create the map
+1. Open the file to a fd. Name is the argv[1] which must be a .ber file
+2. Read line by line with GNL
+3. Loop until all the lines have been read.
+4. Save the number of rows
+5. Save the map data in a map variable inside the structure
 */
 void	ft_save_map(t_data *game, char *str)
 {

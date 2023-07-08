@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 19:05:04 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:17:38 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,13 @@ static int	ft_object_iscorrect(char **map, char c)
 	return (0);
 }
 
-/*Step 1. Create a copy of the original map. We are going to modify the
-values with
-floodfill algorithm, and we don't want to modify the original map.
-Step 2. Find the position of the player 'P'. The position of x and y gets saved
-in the structure thanks to the use of pointers.
-Step 3. Floodfill algorithm in map_copy
-Step 4. Check floodfilled map. If error, free the map_copy and call the exit error ft
-Step 5. Copy the STARTING position of the player to the game struct. It will be needed later
-in ft_move. Notice that we send the address (&) because the variable was created in this function
+/*
+1. Create a copy of the map, in order not to modify the original map
+2. Find the position of the player, it will be the start point
+3. Floodfill algorithm in map_copy
+4. Save the position of the player for later
+Note that we send the address of the structure because it was created in 
+this function
 */
 static int	ft_path_iscorrect(t_data *game)
 {
@@ -142,7 +140,8 @@ int	ft_map_iserror(t_data *game)
 		return (ft_error_exit(INVALID_WALLS, game), 1);
 	if (ft_map_floor(game->map) == 1)
 		return (ft_error_exit(INVALID_FLOOR, game), 1);
-	if (ft_object_iscorrect(game->map, 'P') == 1 || ft_object_iscorrect(game->map, 'E')
+	if (ft_object_iscorrect(game->map, 'P') == 1 || \
+		ft_object_iscorrect(game->map, 'E') \
 		|| ft_object_iscorrect(game->map, 'C') == 1)
 		return (ft_error_exit(INVALID_OBJECTS, game), 1);
 	if (ft_path_iscorrect(game) == 1)
