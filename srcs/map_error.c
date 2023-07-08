@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 14:44:57 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:01:10 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	ft_map_isrectangle(char **map)
 
 	i = 0;
 	line_len = ft_strlen_line(map[i]);
-	//ft_printf("first line len: %d\n", line_len);
 	if (line_len < 0)
 		return (1);
 	while (map[i])
@@ -78,7 +77,8 @@ static int	ft_map_walls(char **map)
 }
 /*
 This function returns 1 as error if the floor is not a '0', as required by the subject.
-It loops all the positions within the wall
+It loops all the positions within the wall. If it finds a char that is not allowed, the
+function returns 1 as error.
 */
 static int	ft_map_floor(char **map)
 {
@@ -115,7 +115,6 @@ static int	ft_map_floor(char **map)
 This functions checks if there are 0 or more than one P or E in the map.
 Several collectibles (C) are allowed
 */
-
 static int	ft_object_iscorrect(char **map, char c)
 {
 	int	obj_count;
@@ -145,18 +144,8 @@ static int	ft_path_iscorrect(t_data *game)
 	t_pos	map_data;
 
 	map_copy = ft_copy_map(game->map);
-	printf("duplicate map is:\n");
-	ft_print_dup_map(map_copy);
-
 	ft_find_p(map_copy, &map_data);
-	printf("map size is row |%d|, columns |%d|\n",map_data.size_y, map_data.size_x);
-	printf("player is at position row: |%d|, column: |%d|\n", map_data.p_y, map_data.p_x);
-
 	ft_floodfill(map_copy, map_data, map_data.p_x, map_data.p_y);
-
-	printf("map after floodfill is:\n");
-	ft_print_dup_map(map_copy);
-
 	if (ft_check_floodfill(map_copy) == 1)
 	{
 		ft_free_map(map_copy);

@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 13:07:25 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:54:05 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	ft_init_game(t_data *game)
 	mlx_key_hook(game->window, *ft_input, game);
 	mlx_hook(game->window, 17, 1L << 17, ft_exit_ok, game);
 	mlx_loop(game->mlx);
-	//ft_exit_ok(game);
 }
 
 /* The program starts here.
@@ -65,15 +64,8 @@ int	main(int argc, char **argv)
 		ft_save_map(&game, argv[1]);
 		if (ft_map_iserror(&game) == 1)
 			return (1);
-
-	// JUST PRINT TEST
-		ft_printf("map is correct. map is:\n");
-		ft_print_map(game);
-	// JUST PRINT TEST
-
 		ft_init_game(&game);
 	}
-	system("leaks so_long");
 	ft_error_exit(WRONG_ARGS, &game);
 	return (0);
 }

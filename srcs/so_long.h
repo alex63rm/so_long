@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 11:13:40 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:05:48 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,5 @@ void	ft_copy_p_pos(t_data *game, t_pos *map_data);
 int		ft_find_c(char **map);
 char	*ft_player_look(char direction);
 int		ft_print_player(t_data *game, int *x, int *y, char direction);
-
-
-
-
-//temp functions
-void	ft_print_map(t_data game);
-void	ft_print_dup_map(char **map);
 
 #endif

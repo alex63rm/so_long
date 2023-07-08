@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:12:20 by alejarod          #+#    #+#             */
-/*   Updated: 2023/03/30 21:08:23 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:30:51 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*ft_player_look(char direction)
 	else if (direction == 'D')
 		xpm_path = PLAYER_D;
 	return (xpm_path);
-
 }
 
 /*
@@ -52,13 +51,13 @@ int	ft_print_player(t_data *game, int *x, int *y, char direction)
 		ft_error_exit(106, game);
 	if (direction == 'L')
 		mlx_put_image_to_window(game->mlx, game->window,
-		img, (--(*x)) * 80, (*y *80));
+		img, (--(*x)) * 80, (*y * 80));
 	if (direction == 'R')
 		mlx_put_image_to_window(game->mlx, game->window,
-		img, (++(*x)) * 80, (*y *80));
+		img, (++(*x)) * 80, (*y * 80));
 	if (direction == 'U')
 		mlx_put_image_to_window(game->mlx, game->window,
-		img, *x * 80, (--(*y) *80));
+		img, *x * 80, (--(*y) * 80));
 	if (direction == 'D')
 		mlx_put_image_to_window(game->mlx, game->window,
 		img, *x * 80, (++(*y) * 80));

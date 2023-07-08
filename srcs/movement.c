@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/04/29 13:09:33 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:04:47 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,32 @@ static void	ft_unlock_exit(t_data *game, int x, int y, char direction)
 }
 
 /*
-This function updates the player position with the help of the mlx library. It
-will replace the player position with an empty (FLOOR) image. Then it will print
-the player again in the new position.
+This function updates the player position with the help of the mlx library.
+It will replace the player position with an empty (FLOOR) image. 
 Notice that x and y received is an address. We are using the content with *x
 and *y, and then sending the address to ft_print_player.
-Finally, if the player moved to a tile with a C, it will be replaced by 0, to
+If the player moved to a tile with a C, it will be replaced by 0, to
 count the remaining collectibles and unlock the final exit tile.
+If the player moves out of the E, print the door where the player was before
+Finally, print the player again in the new position.
 */
 static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 {
 	int		img_width;
 	int		img_height;
 	void	*img;
+	void	*img2;
 
 	img = mlx_xpm_file_to_image(game->mlx, FLOOR, &img_width, &img_height);
 	mlx_put_image_to_window(game->mlx, game->window, img, (*x * 80), (*y * 80));
-	ft_print_player(game, x, y, direction);
 	if (game->map[*y][*x] == 'C')
 		game->map[*y][*x] = '0';
+	else if (game->map[*y][*x] == 'E')
+	{
+		img2 = mlx_xpm_file_to_image(game->mlx, EXIT, &img_width, &img_height);
+		mlx_put_image_to_window(game->mlx, game->window, img2, (*x * 80), (*y * 80));
+	}
+	ft_print_player(game, x, y, direction);
 }
 
 /*
@@ -65,26 +72,22 @@ static int	ft_player_stop(t_data *game, int x, int y, char direction)
 {
 	if (direction == 'L')
 	{
-		if (game->map[y][x - 1] == '1' || (game->map[y][x - 1] == 'E'
-		&& ft_find_c(game->map) != 0))
+		if (game->map[y][x - 1] == '1')
 			return (1);
 	}
 	if (direction == 'U')
 	{
-		if (game->map[y - 1][x] == '1' || (game->map[y - 1][x] == 'E'
-		&& ft_find_c(game->map) != 0))
+		if (game->map[y - 1][x] == '1')
 			return (1);
 	}
 	if (direction == 'R')
 	{
-		if (game->map[y][x + 1] == '1' || (game->map[y][x + 1] == 'E'
-		&& ft_find_c(game->map) != 0))
+		if (game->map[y][x + 1] == '1')
 			return (1);
 	}
 	if (direction == 'D')
 	{
-		if (game->map[y + 1][x] == '1' || (game->map[y + 1][x] == 'E'
-		&& ft_find_c(game->map) != 0))
+		if (game->map[y + 1][x] == '1')
 			return (1);
 	}
 	return (0);
@@ -109,8 +112,6 @@ static int	ft_move(t_data *game, char direction)
 		return (0);
 	ft_unlock_exit(game, x, y, direction);
 	ft_move_player(game, &x, &y, direction);
-	ft_printf("updated player ROW (y) after move is: |%d|\n", y);
-	ft_printf("updated player COLUMN (x) after move is: |%d|\n\n", x);
 	return (1);
 }
 
