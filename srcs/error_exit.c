@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 18:45:47 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:28:43 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_error_exit(int type, t_data *game)
 	if (type == WRONG_ARGS)
 		return (ft_printf("Error\nWrong number of arguments\n"), exit(1));
 	if (type == WRONG_EXT)
-		return (ft_printf("Error\nInvalid mapn\n"), exit(1));
+		return (ft_printf("Error\nInvalid map\n"), exit(1));
 	if (type == EMPTY_MAP)
 		return (ft_gfree(game), ft_printf("Error\nNo such file or map is \
 		empty\n"), exit(1));
