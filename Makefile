@@ -6,7 +6,7 @@
 #    By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/15 15:01:34 by alejarod          #+#    #+#              #
-#    Updated: 2023/07/05 20:34:24 by alejarod         ###   ########.fr        #
+#    Updated: 2023/07/08 17:10:33 by alejarod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ MLX_A = -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 # Project sources and objects
 SRCS_PATH = ./srcs
-SRCS = error_exit.c error_utils.c main.c map_error.c map.c move_utils.c movement.c textures.c zz_temp_utils.c
+SRCS = error_exit.c error_utils.c main.c map_error.c map.c move_utils.c movement.c textures.c
 HEADER = $(SRCS_PATH)/so_long.h
 
 OBJS_PATH = ./objs

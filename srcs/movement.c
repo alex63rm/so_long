@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:04:47 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:38:14 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ static void	ft_unlock_exit(t_data *game, int x, int y, char direction)
 
 /*
 This function updates the player position with the help of the mlx library.
-It will replace the player position with an empty (FLOOR) image. 
-Notice that x and y received is an address. We are using the content with *x
+1. If the player collected a C, replace the char by 0, a FLOOR.
+2. Update the count of C to check if the Exit should be unlocked
+3. Replace the previous position of the player with the FLOOR.
+4. If the player is on top of the Exit, put the exit after the player moves
+5. Print the player in the new position 
+Notice that x and y received is a memory address. We are using the content with *x
 and *y, and then sending the address to ft_print_player.
 If the player moved to a tile with a C, it will be replaced by 0, to
 count the remaining collectibles and unlock the final exit tile.
-If the player moves out of the E, print the door where the player was before
-Finally, print the player again in the new position.
 */
 static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 {
@@ -50,12 +52,13 @@ static void	ft_move_player(t_data *game, int *x, int *y, char direction)
 	int		img_height;
 	void	*img;
 	void	*img2;
-
-	img = mlx_xpm_file_to_image(game->mlx, FLOOR, &img_width, &img_height);
-	mlx_put_image_to_window(game->mlx, game->window, img, (*x * 80), (*y * 80));
+	
 	if (game->map[*y][*x] == 'C')
 		game->map[*y][*x] = '0';
-	else if (game->map[*y][*x] == 'E')
+	ft_unlock_exit(game, *x, *y, direction);
+	img = mlx_xpm_file_to_image(game->mlx, FLOOR, &img_width, &img_height);
+	mlx_put_image_to_window(game->mlx, game->window, img, (*x * 80), (*y * 80));
+	if (game->map[*y][*x] == 'E')
 	{
 		img2 = mlx_xpm_file_to_image(game->mlx, EXIT, &img_width, &img_height);
 		mlx_put_image_to_window(game->mlx, game->window, img2, (*x * 80), (*y * 80));
@@ -110,7 +113,7 @@ static int	ft_move(t_data *game, char direction)
 	}
 	if (ft_player_stop(game, x, y, direction) == 1)
 		return (0);
-	ft_unlock_exit(game, x, y, direction);
+	//ft_unlock_exit(game, x, y, direction);
 	ft_move_player(game, &x, &y, direction);
 	return (1);
 }
