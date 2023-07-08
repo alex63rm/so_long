@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:05:48 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:09:04 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	int		map_rows;
 	int		p_x_copy;
 	int		p_y_copy;
+	int		final_move;
 }	t_data;
 
 typedef struct	s_pos

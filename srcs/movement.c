@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 17:38:14 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:12:11 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,28 @@ static void	ft_unlock_exit(t_data *game, int x, int y, char direction)
 {
 	if (direction == 'L' && game->map[y][x - 1] == 'E' &&
 		ft_find_c(game->map) == 0)
+		{
+			ft_printf("Movement #: |%d|\n", game->final_move);
 			ft_exit_ok(game);
+		}
 	if (direction == 'U' && game->map[y - 1][x] == 'E' &&
 		ft_find_c(game->map) == 0)
+		{
+			ft_printf("Movement #: |%d|\n", game->final_move);
 			ft_exit_ok(game);
+		}
 	if (direction == 'R' && game->map[y][x + 1] == 'E' &&
 		ft_find_c(game->map) == 0)
+		{
+			ft_printf("Movement #: |%d|\n", game->final_move);
 			ft_exit_ok(game);
+		}
 	if (direction == 'D' && game->map[y + 1][x] == 'E' &&
 		ft_find_c(game->map) == 0)
+		{
+			ft_printf("Movement #: |%d|\n", game->final_move);
 			ft_exit_ok(game);
+		}
 }
 
 /*
@@ -113,7 +125,6 @@ static int	ft_move(t_data *game, char direction)
 	}
 	if (ft_player_stop(game, x, y, direction) == 1)
 		return (0);
-	//ft_unlock_exit(game, x, y, direction);
 	ft_move_player(game, &x, &y, direction);
 	return (1);
 }
@@ -153,7 +164,8 @@ int	ft_input(int key, t_data *game)
 		if (move_flag == 1)
 		{
 			i++;
-			ft_printf("Movement #: |%d| -> key pressed |%d|\n", i, key);
+			game->final_move = i + 1;
+			ft_printf("Movement #: |%d|\n", i);
 		}
 	}
 	return (0);

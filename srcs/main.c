@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:49:51 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 16:54:05 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:09:32 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	ft_init_struct(t_data *game)
 	game->map = NULL;
 	game->map_rows = 0;
 	game->p_x_copy = 0;
-	game->p_y_copy = 0; 
+	game->p_y_copy = 0;
+	game->final_move = 0;
 }
 
 /*
