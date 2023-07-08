@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:10:34 by alejarod          #+#    #+#             */
-/*   Updated: 2023/06/28 22:57:38 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:15:12 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,15 @@ int	ft_error_exit(int type, t_data *game)
 		return (ft_printf("Error\nInvalid map: only .ber extension \
 	\n"), exit(1), 1);
 	if (type == EMPTY_MAP)
-		return (ft_gen_free(game), ft_printf("Error\nMap is empty or wrong \
-	map filename\n"), exit(1), 1);
+		return (ft_gen_free(game), ft_printf("Error\nNo such file or map is empty\n"), exit(1), 1);
 	if (type == INVALID_MAP)
 		return (ft_gen_free(game), ft_printf("Error\nMap must be a \
 	rectangle.\n"), exit(1), 1);
 	if (type == INVALID_WALLS)
 		return (ft_gen_free(game),ft_printf("Error\nMap must be surrounded \
 	by walls (wall char == '1')\n"), exit(1), 1);
+	if (type == INVALID_WALLS)
+		return (ft_gen_free(game),ft_printf("Error\nFloor char must be '0'\n"), exit(1), 1);
 	if (type == INVALID_OBJECTS)
 		return (ft_gen_free(game),ft_printf("Error\nInvalid object type or \
 	number. Allowed types and count: P = 1, E = 1, C >= 1\n"), exit(1), 1);

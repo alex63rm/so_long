@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:03:57 by alejarod          #+#    #+#             */
-/*   Updated: 2023/06/28 22:03:17 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:16:52 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,31 @@ row 1:
 row i:			| 1 || 1 || 1 |
 */
 static int	ft_map_walls(char **map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen_line(map[i]);
+	while (map[i])
+	{
+		if (map[i][0] != '1' || map[i][len - 1] != '1')
+			return (1);
+		i++;
+	}
+	while (len - 1 > 0)
+	{
+		if (map[0][len - 1] != '1' || map[i - 1][len - 1] != '1')
+			return (1);
+		len--;
+	}
+	return (0);
+}
+/*
+This function returns 1 as error if the floor is not a '0', as required by the subject.
+It loops all the positions within the wall
+*/
+static int	ft_map_floor(char **map)
 {
 	int	i;
 	int	len;
@@ -154,6 +179,8 @@ int	ft_map_iserror(t_data *game)
 		return (ft_error_exit(INVALID_MAP, game), 1);
 	if (ft_map_walls(game->map) == 1)
 		return (ft_error_exit(INVALID_WALLS, game), 1);
+	if (ft_map_floor(game->map) == 1)
+		return (ft_error_exit(INVALID_FLOOR, game), 1);
 	if (ft_object_iscorrect(game->map, 'P') == 1 || ft_object_iscorrect(game->map, 'E')
 		|| ft_object_iscorrect(game->map, 'C') == 1)
 		return (ft_error_exit(INVALID_OBJECTS, game), 1);

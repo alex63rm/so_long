@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/06/28 22:54:17 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 11:13:40 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #define INVALID_XPM 106
 #define MANUAL_CLOSE 107
 #define WRONG_EXT 108
+#define INVALID_FLOOR 109
 
 //----------------------------XPM CONSTANTS-----------------------
 
