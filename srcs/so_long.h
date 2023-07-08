@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 23:53:33 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 19:02:07 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/08 19:19:16 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		ft_exit_ok(t_data *game);
 void	ft_free_map(char **map);
 void	ft_scan_map(t_data *game);
 int		ft_input(int key, t_data *game);
+int		ft_map_floor(char **map);
 
 //--------------------UTILS----------------------
 int		ft_strlen_line(char *str);
