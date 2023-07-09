@@ -6,7 +6,7 @@
 /*   By: alejarod <alejarod@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:16:54 by alejarod          #+#    #+#             */
-/*   Updated: 2023/07/08 18:30:22 by alejarod         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:51:13 by alejarod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int	ft_input(int key, t_data *game)
 
 	if (!i)
 		i = 0;
-	move_flag = 1;
+	move_flag = 0;
 	if (key == 53)
 		ft_exit_ok(game);
 	if (key == 123)
